@@ -72,6 +72,7 @@ Now we can refer to just cout_std instead of std::... but... that is kind of the
 The following are the basic data types in C++: 
 
 ![image](https://user-images.githubusercontent.com/3376451/130638928-46fdf9d5-ad49-462c-bf31-03e582a0ba8b.png)
+
 *Note that this table says 1 bit for a bool, but in reality, it is actually a full byte* 
 
 ### auto keyword
@@ -169,11 +170,84 @@ switch(c) {
 ---
 
 ## while loops
+Typical while loop. Very similar to other languages.
+
+Syntax:
+```
+init step 
+while(condition) {
+   //do something
+   update step 
+}
+```
+
+The example below will print 0 to 9:
+```
+int i = 0;  
+while(i < 10) {
+   std::cout << i << " "; 
+   i++;
+}
+```
+
+Typical do-while loop. Very similar to other languages.
+
+Syntax:
+```
+init step 
+do{
+   //do something
+   update step 
+}while(condition);
+```
+
+The example below will also print 0 to 9:
+```
+int i = 0;  
+do{
+   std::cout << i << " "; 
+   i++;
+}while(i < 10);
+```
+
+**Remember that a do while loop will always execute once, whereas a while loop may not if the condition is not satisfied!**
 
 ---
 
 ## for loops
+Typical for loop. Very similar to other languages.
+
+Syntax:
+```
+for(init step; condition; update){
+   //do something
+}
+```
+
+The example below will also print 0 to 9:
+```
+for(int i = 0; i < 10; i++){
+   std::cout << i << " "; 
+}
+```
 
 ---
 
 ## Difference between post and pre increment
+The pre-increment (`++i`) will increment first and then print or be assigned to a variable. 
+
+In the example below, the value of `i` will be 1 when it prints. 
+```
+int i = 0; 
+std::cout << ++i; 
+//i is now equal to 1
+```
+
+The post-increment(`i++`) will first print or be assigned to a variable and then increment. 
+
+In the example below, the value of `i` will be 0 when it prints. However, it will actually be incremented to 1, so if we printed `i` again we would get a 1. 
+```
+int i = 0; 
+std::cout << i++; 
+//i is now equal to 1
+```
