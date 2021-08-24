@@ -36,6 +36,10 @@ int main(int argc, char **argv) {
     // auto keyword for type inference
     auto i = 0;
     // std::cout << sizeof(i) << std::endl;
+    // cannot change types after that! 
+    // i = 1.2;
+    // std::cout << i << std::endl;
+    
     ///////////////////////////////////////////////////////////////////////
     // Arrays
     // type name[] = {init values};
