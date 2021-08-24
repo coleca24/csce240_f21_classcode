@@ -28,3 +28,20 @@ The following prints out Hello World! to the terminal (standard out). Notice the
 ```
 std::cout << "Hello World! << std::endl;
 ```
+
+---
+
+## I/0 (Standard in and out)
+`std::cout` will print to standard out (the terminal)
+
+`std::cin` will read in input from standard in (the terminal again)
+
+`<<` stream insertion operator (put stuff into the stream to print out)
+
+`>>` stream extraction operator (take stuff out of the stream and put it into your program)
+
+Can be cascaded. For example, in the following code, if the numbers 4 and 5 are entered on the terminal by the user then the variable `a` will hold 4 and the variable `b` will hold 5.
+```
+int a(0), b(0); 
+std::cin >> a >> b;
+```
