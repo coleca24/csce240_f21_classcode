@@ -45,3 +45,31 @@ Can be cascaded. For example, in the following code, if the numbers 4 and 5 are 
 int a(0), b(0); 
 std::cin >> a >> b;
 ```
+
+---
+
+## Basic Data Types
+
+---
+
+## Arrays
+
+---
+
+## if / else statements
+
+---
+
+## switch statement
+
+---
+
+## while loops
+
+---
+
+## for loops
+
+---
+
+## Difference between post and pre increment
