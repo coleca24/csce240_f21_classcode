@@ -1,3 +1,4 @@
+// Copyright 2021 Casey Cole
 #include <iostream>
 
 // using namespace std;
