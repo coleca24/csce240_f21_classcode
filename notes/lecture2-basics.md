@@ -72,6 +72,7 @@ Now we can refer to just cout_std instead of std::... but... that is kind of the
 The following are the basic data types in C++: 
 
 ![image](https://user-images.githubusercontent.com/3376451/130638928-46fdf9d5-ad49-462c-bf31-03e582a0ba8b.png)
+*Note that this table says 1 bit for a bool, but in reality, it is actually a full byte* 
 
 ### auto keyword
 (also sometimes called type inference) is a feature that allows the compiler to deduce the type of an object from the object’s initializer.
@@ -85,14 +86,85 @@ We will use this auto keyword a lot more when talking about iterators and the st
 ---
 
 ## Arrays
+Primative arrays in C++ can be defined using the following general form: 
+```
+type name[] = {init value(s)
+```
+For example, the following would create an array of 3 ints with the values 1, 2, and 3 in positions 0, 1, and 2
+```
+int arr[] = {1,2,3};
+```
+N-D Arrays can be created by increasing the number of square brackets! For example, this is a 2x3 array (2 rows and 3 columns) with values of 0 for the first row and 1s for the second. 
+```
+int arr[2][3] = { {0,0,0}, {1,1,1} };
+```
+You can increase to more dimensions as well! 
 
 ---
 
 ## if / else statements
+Typical if/else if/else statement. Very similar to other languages.
+
+Syntax:
+```
+if(conditional){
+   actions
+}
+else if(some other conditional){
+   actions
+}
+else {
+   actions
+}
+```
+In the following example, "Yay" will be printed if `number` is between 0-1, "Hi" if `number` is between 2-4 and "Boo" if `number` is anything else. If you test this code with `number = 2` then it should print "Hi".
+```
+int number = 2; 
+if(number >= 0 && number <=1) {
+   std::cout << "Yay";
+}
+else if(number >= 2 && number <=4) {
+   std::cout << "Hi";
+}
+else {
+   std::cout << "Boo";
+}
+```
 
 ---
 
 ## switch statement
+Typical switch statement. Very similar to other languages.
+
+Syntax:
+```
+switch(variable) {
+   case cond1 : 
+      //do something
+      break;
+   case cond2 : 
+      //do something
+      break;
+   default: 
+      //do something
+}
+```
+
+The following example will switch on a char. Since `c` starts as 'A', "You got an A!" will print. 
+```
+char c = "A";
+switch(c) {
+   case "A":
+      std::cout << "You got an A!"; 
+      break;
+   case "B":
+      std::cout << "You got an B!"; 
+      break;
+   default: 
+      std::cout << "You did not get an A or B"; 
+      break;
+} 
+```
 
 ---
 
