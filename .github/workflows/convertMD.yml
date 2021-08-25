@@ -19,10 +19,10 @@ jobs:
       - uses: baileyjm02/markdown-to-pdf@v1
         with:
           input_dir: notes
-          output_dir: notes
+          output_dir: notes/pdfs
           # Default is true, can set to false to only get PDF files
           build_html: false
       - uses: actions/upload-artifact@v1
         with:
           name: notes
-          path: notes
+          path: notes/pdfs
