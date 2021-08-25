@@ -14,8 +14,8 @@ jobs:
       if: github.ref == 'refs/heads/master'
       with:
         markdown_dir: notes
-        output_dir: notes/pdf
+        output_dir: notes/pdfs
     - uses: actions/upload-artifact@v1
       with:
         name: platform-architecture-docs
-        path: notes/pdf
+        path: notes/pdfs
