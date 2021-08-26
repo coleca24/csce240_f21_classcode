@@ -3,9 +3,9 @@
 
 ## Strings
 ---
-**Important** To use a string in C++, you must include the header for the string library: 
+**Important** To use a string in C++, you either need to explicitly specify a namespace (ie. `std::string`) or you can tell your program that you are using just the string from std.  
 ```
-#include <string>
+using std::string;
 ```
 Remember that a C++ string is not a primative type, it is an object. This means that it has functions and properties associated with it. For a full list, see the documentation here: <https://www.cplusplus.com/reference/string/string/>
 
