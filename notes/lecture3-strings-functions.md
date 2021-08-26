@@ -77,12 +77,28 @@ We can get input from the user using the `std::cin` stream and store them in a s
 
 Example: 
 ```
-Todo: add code here
+string name; 
+std::cout << "Enter your name: "; 
+std::cin >> name; 
+std::cout << "Name: " << name; 
+```
+```
+output: 
+Enter your name: Casey Cole
+Name: Casey
 ```
 
 What this means is that if you want to have the user enter text that has a space in the middle and store it in a string variable using just `std::cin` you would need to do something like this:
 ```
-Todo: add code here
+string f_name, l_name; 
+std::cout << "Enter your name: "; 
+std::cin >> f_name >> l_name; 
+std::cout << "Name: " << f_name << " " << l_name; 
+```
+```
+output: 
+Enter your name: Casey Cole
+Name: Casey Cole
 ```
 
 We will learn in a later lecture about how to simplify this using the `getline()` function! 
@@ -105,12 +121,17 @@ void AddTableEntry();
 void DeleteEntry();
 ```
 
+For the parameter list, names for each of the variables do not need to be given, just the type (int, float, etc) of the parameter. 
+
+Functions can return primitive types, pointers and objects. They cannot return primitive arrays.
+
 For example, if I were to make an `add()` function that I wanted to take in two ints and return an int, then my prototype would look like this: 
 ```
 int add(int, int); 
 ```
 
 *Function Definition*
+
 The definition is where you define the actions that the function should take given the parameters that it is passed. This is added under the main function. At this point, you will need to give your parameters a name so that you can use them! For example, the definition for the add function would look something like this:
 ```
 int add(int num1, int num2) {
@@ -119,6 +140,7 @@ int add(int num1, int num2) {
 ```
 
 *Function Call*
+
 Now that you have defined the function, you are ready to actually use the function. To use the function, you will issue a function call. This call may be in other user defined functions or in the main function. The function call can be repeated multiple times. An example of a call to the add function is: 
 ```
 int sum = 0; 
@@ -127,11 +149,39 @@ sum = add(10,10);
 
 *All Together*
 
-### Parmeters and Overloading
-For the parameter list, names for each of the variables do not need to be given, just the type (int, float, etc) of the parameter. 
+Here is how this would look in your cpp file: 
+```
+#import <iostream> 
 
-### Return Types
-Functions can return primitive types, pointers and objects. 
+int add(int,int); 
+
+int main() {
+  int sum = 0; 
+  sum = add(10,10);
+}
+
+int add(int num1, int num2) {
+  return num1 + num2; 
+}
+```
+
+### Overloading functions
+To overload a function means to create more than one function with the exact same name. This is useful in a variety of situations. For example, if you wanted to make a universal print function that the user just needs to call using `print(<whatever they want to print>)`. You will want the user to be able to pass in a string OR an int OR ... so you might define the following set of overloaded `print()` functions: 
+```
+void print(string); 
+void print(int); 
+void print(float);
+etc. 
+```
+Now the user will be able to print any type by using the same syntax! Very convienient! 
+
+**NOTE** in order for C++ to be able to choose which function to use, you have to vary the parameters for each overloaded function. It is not enough to vary, for instance, the return type. 
+
+For example, C++ will see these as identical functions and will not know which function to choose and therefore will not compile. 
+```
+int sum(int,int);
+float sum(int,int);
+```
 
 ### Call-by-Value vs. Call-by-Reference
 
