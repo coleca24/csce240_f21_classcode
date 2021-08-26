@@ -93,17 +93,17 @@ Sure! Same syntax as the other primative arrays (replace type with string)
 ## Functions
 ---
 ### Basics
-We are going to stay in the functional world for a while to get the hang of coding in C++. A C++ function has two main parts: the prototype and the definition. 
+We are going to stay in the functional world for a while to get the hang of coding in C++. A C++ function has three main parts: the prototype, the definition and the call. 
 
 *Function Prototype*
 
 This goes above the main function (or above any function that will be using the function). The main needs to see what this prototype looks like in order for you to use it in the main. The prototype has three main parts: the return type, the function name and the parameter type list. 
 
-Functions can return primitive types, pointers and objects. 
-
-Todo: Naming rules?
-
-For the parameter list, names for each of the variables do not need to be given, just the type (int, float, etc) of the parameter. 
+**Google Style Sheet** says: regular function have mixed case (camel case). For example: 
+```
+void AddTableEntry(); 
+void DeleteEntry();
+```
 
 For example, if I were to make an `add()` function that I wanted to take in two ints and return an int, then my prototype would look like this: 
 ```
@@ -111,14 +111,33 @@ int add(int, int);
 ```
 
 *Function Definition*
+The definition is where you define the actions that the function should take given the parameters that it is passed. This is added under the main function. At this point, you will need to give your parameters a name so that you can use them! For example, the definition for the add function would look something like this:
+```
+int add(int num1, int num2) {
+  return num1 + num2; 
+}
+```
+
+*Function Call*
+Now that you have defined the function, you are ready to actually use the function. To use the function, you will issue a function call. This call may be in other user defined functions or in the main function. The function call can be repeated multiple times. An example of a call to the add function is: 
+```
+int sum = 0; 
+sum = add(10,10); 
+```
 
 *All Together*
 
 ### Parmeters and Overloading
+For the parameter list, names for each of the variables do not need to be given, just the type (int, float, etc) of the parameter. 
 
 ### Return Types
+Functions can return primitive types, pointers and objects. 
 
 ### Call-by-Value vs. Call-by-Reference
 
 ### `const` keyword
+
+### Default values
+
+### Example of a unit-tested function
 
