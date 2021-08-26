@@ -184,6 +184,56 @@ float sum(int,int);
 ```
 
 ### Call-by-Value vs. Call-by-Reference
+This concept is critical in starting to understand how C++ interacts with your computer's memory. 
+
+**Call-by-Value** is just a typical function. These are the ones that we are used to from other programming languages. You send in parameters and return some value (or nothing). We know that if we pass variables to functions, if we were to change the value of that variable in the function definition, then the changes would just be local to that function (the changes would not propegate back to the function that you called it from). 
+
+Let me show you what I mean, take the following example of an `add()` function. If I were to change the value of `n1` in the `add()` function (see in bold), that would not change the value of the `num1` variable in the `main()` function. The output would still be 10. 
+```
+#import <iostream> 
+
+int add(int,int); 
+
+int main() {
+  int sum = 0; 
+  int num1 = 10; 
+  int num2 = 10; 
+  sum = add(num1,num2);
+  std::cout << num1; 
+}
+
+int add(int n1, int n2) {
+  **n1 = 1;**
+  return n1 + n2; 
+}
+```
+```
+output: 10
+```
+
+**Call-by-Reference** is where things get a little funky. Instead of sending a seperate copy of the variable, we send what is called a "reference" to the variable. This reference is actually the memory location of the variable in memory. This means that any changes that you make in the function to that variable will be reflected in the `main()`. The way that you specify that you want a variable to be Call-by-Reference is by adding an ampersand (&) to the variable in the function prototype. 
+
+```
+#import <iostream> 
+
+int add(int**&**,int); 
+
+int main() {
+  int sum = 0; 
+  int num1 = 10; 
+  int num2 = 10; 
+  sum = add(num1,num2);
+  std::cout << num1; 
+}
+
+int add(int **&**n1, int n2) {
+  **n1 = 1;**
+  return n1 + n2; 
+}
+```
+```
+output: 1
+```
 
 ### `const` keyword
 
