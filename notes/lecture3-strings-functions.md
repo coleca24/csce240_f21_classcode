@@ -237,8 +237,41 @@ output: 1
 ```
 
 ### `const` keyword
+Sometimes you will have to use call-by-reference with functions (for example when you are passing array). However, you may not want that function to modify the value(s) of variable that you send. In order to protect these variables, you can modify them with the `const` keyword. 
+
+For example, you would create a `printArray()` function (a function that prints the contents of an array, but you do not want to modify it) like this:
+```
+#import <iostream> 
+
+void printArray(const int[], int); 
+
+int main() {
+  int arr[5]; 
+  int size = (sizeof(arr) / sizeof(arr[0]));
+  printArray(arr, size); 
+}
+
+void printArray(const int arr[], int size) {
+  for(int i = 0; i < size; i++) {
+    // arr[i] = 0; // This would be an error!
+    std::cout << arr[i] << std::endl;
+  }
+}
+```
 
 ### Default values
+You can add a default value to a parameter of a function. This gives the option for a user to pass a value or not. If they do not, then the default you define will be used. 
 
-### Example of a unit-tested function
+**Important**: You must start from right to left assigning default values. You cannot skip a parameter (ie. parameter 1 cannot have a default value if parameter 2 and 3 do not - examples below)
 
+Examples: 
+```
+int calcSomething(int, int, int error = 0.1); // This is legal
+int calcSomething(int, int b = 0, int error = 0.1); // This is legal
+int calcSomething(int a = 0, int b = 0, int error = 0.1); // This is legal
+
+int calcSomething(int a = 0; int, int); // This is illegal
+int calcSomething(int a = 0; int b = 0, int); // This is illegal
+int calcSomething(int a = 0; int, int error = 0.1); // This is illegal
+int calcSomething(int; int b = 0, int); // This is illegal
+```
