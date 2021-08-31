@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
 
     // Writing to a file
 
-    // Exercise: What if the file is CSV? 
+    // Exercise: What if the file is CSV?
     // More on files: https://www.cplusplus.com/doc/tutorial/files/
 
     return 0;
