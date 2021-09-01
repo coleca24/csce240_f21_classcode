@@ -9,7 +9,14 @@ void printHelloWorld();
 string printString(const string&);
 void initValues(string[], int);
 
+int add(int, int);
+float add(float, float f = 1.0, float f3 = 1.0);
+
 int main(int argc, char **argv) {
+    // add(1, 3);
+    // add(1,1);
+    // add(1.2, 1.3);
+    // add(1.2, 1.2);
     // Function calls go here
     printHelloWorld();
 
@@ -19,8 +26,8 @@ int main(int argc, char **argv) {
     string output;
     output = printString(hello);
     cout << hello << "\n";
-    // Those were all pass-by-value... changing the variable passed in 
-    // does not change it out here in the main. 
+    // Those were all pass-by-value... changing the variable passed in
+    // does not change it out here in the main.
     // What if I wanted to have the value reflected here?
     // TODO(class): Add function that fills in a string in the function.
 
@@ -30,7 +37,7 @@ int main(int argc, char **argv) {
     string str_arr[5];
     // TODO(class): Add function that reads in input from user
     int size = sizeof(str_arr) / sizeof(str_arr[0]);
-    initValues(str_arr, size);
+    // initValues(str_arr, size);
 
     // const keyword
 
@@ -57,4 +64,13 @@ void initValues(string str_arr[], int size) {
         cout << "Value:\n";
         std::cin >> str_arr[i];
     }
+}
+
+int add(int n1, int n2) {
+    cout << "int add" << "\n";
+    return n1 + n2;
+}
+float add(float n1, float n2) {
+    cout << "float add" << "\n";
+    return n1 + n2;
 }
