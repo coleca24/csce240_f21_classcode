@@ -56,6 +56,7 @@ char c = num; // c will now be a character between '0' and '9'
 Yay! Dynamic memory! To fully appreciate pointers and what they afford you, you need to first take a look at the basic layout of a C++ program, especially the difference between the heap and the stack. These are two different places where memory is allocated for variables in your programs. 
 
 Memory layout of a C++ program: 
+
 ![image](https://user-images.githubusercontent.com/3376451/132609533-1ec39af4-2fd0-4584-b320-08d33e0d3f73.jpeg)
 
 The **stack** is where the memory for traditional variables (int, int[], double, float, string etc.) is allocated. After your program is finished or that variable goes out of scope, it is automatically deallocated (marked as free) by your system. Note that you do not have any freedom to deallocate variables in the stack yourself. 
@@ -74,6 +75,47 @@ int *xPtr = &x;
 ```
 The `*xPtr = 1000` is an example of dereferencing a pointer. All this means is that we go to the pointer's value (in this case the memory location of `x`) and go to that address (so now we are at `x`) and set the value to 1000 (now `x` = 1000). 
 
-A Use Case - Resizing an array - **TODO**
+*A Use Case - Resizing an array*
 
-At this point, it may seem trival, but that is just the basics. We will soon get into use cases in which it will make sense as to why this is useful. 
+We know that when we create a primitive array, it is fixed to be the size that we declare it to be. This is because this array is created and pushed onto the stack. It has to be fixed in size. However, this is quite limiting when we think of different operations that we would likely want to perform on an array (appending, deleting etc.). Therefore, in order to have dynamic arrays, we need to use dynamic space (in the heap, and therefore, through the use of pointers!). 
+
+First let's look at how to define a dynamic array. We can define a dynamic `int` array in the following way: 
+```
+int *arr = new int[5]; 
+```
+What this does is create a new array of size 5 in the heap. The `arr` `int` pointer will be our access point to the contents of this array. We can access elements in the exact same way as we do with any primitive array. For example, this is how we would print the array (notice that we use the `[]` operator to access the different elements): 
+```
+for (int i = 0; i < 5; i++) {
+   cout << arr[i] << " "; 
+}
+cout << "\n";
+```
+
+Now, what if we want to add a new element and make this array of size 6? We would do that in the following way:
+```
+int *arr = new int[5];
+// Step 1: create a new temporary int pointer 
+// to the "old" array (the one of size 5 sitting in the heap). 
+int *temp = arr;
+
+// Step 2: point the arr pointer to a new 
+// array of the correct size (6)
+arr = new int[6];
+
+// Step 3: use temp to copy the old values into the 
+// new array of size 6 (we still access this through 
+// the arr variable)
+for (int i = 0; i < 5; i++) {
+   arr[i] = temp[i];
+}
+
+// Step 4: set the value of the new element at index 5
+arr[5] = 10;
+
+// Step 5: deallocate the space that we do not need anymore 
+// (the old array of size 5 that we have access to through 
+// the temp pointer)
+delete [] temp;
+```
+Now we have a new array of size 6 sitting in the heap and the array of size 5 is deallocated and available for use! 
+
