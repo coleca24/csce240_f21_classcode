@@ -18,6 +18,7 @@ int main(int argc, char **argv) {
     // As parameters
     // printArray(ptr, size);
 
+    // Let's examine if we are doing call-by-ref or call-by-value
 
     // As a return
     // int * oldArray = new int[5];
