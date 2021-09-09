@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
         pt_arr[i] = 1; 
     }
     int *temp;
-    temp = pt_arr; 
+    temp = pt_arr;
     pt_arr = new int[6];
     delete [] temp;
     delete [] pt_arr;
