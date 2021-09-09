@@ -25,4 +25,6 @@ int main(int argc, char **argv) {
     // int * newArry;
     // newArray = resizeArray(oldArray, size);
 
+    // What should we do for memory clean up?
+
 }
