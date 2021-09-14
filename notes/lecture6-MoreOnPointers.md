@@ -32,7 +32,52 @@ prt = x;  // Again, x is an int, not a memory location.
 ```
 
 ## More on `new` and `delete`
+The `new` keyword will allocate memory in the heap. The `delete` keyword will deallocate the memory in the heap. For every `new` there should be a corresponding `delete`. If you miss a delete then you will "leak" memory (more on that later). Some examples: 
+```
+int *ptr = new int; // allocate an int in the heap
+delete ptr;  // deallocate that int in the heap
+ptr = new int[5]; // allocate an int array of size 5 in the heap
+delete [] ptr; // delete the array in the heap (note the added [] to denote an array)
+```
 ## Allocating and Deleting a 2d Array
+Allocating n-dimensional arrays require 2 steps:
+1. Allocate an array of pointers (of size = number of rows)
+2. Initiialize each of those pointers to an array (of size = number of columns)
+
+```
+int ROWS = 5, COLS = 2; 
+int **arr2d; 
+arr2d = new int*[ROWS]; // step 1 described above
+for(int i = 0; i < ROWS; i++) {
+    arr2d[i] = new int[COLS]; // step 2 described above
+}
+```
+Deallocating n-dimensional arrays also required 2 steps: 
+1. Deallocate the inner arrays (the ones created in the for loop above)
+2. Deallocate the main array (created in step 1 of allocation)
+
+```
+for(int i = 0; i < ROWS; i++) {
+  delete [] arr2d[i]; // step 1 
+}
+delete [] arr2d; // step 2
+```
+
 ## `valgrind` and `leaks`
+These are the two memory checkers that we will use. They will check for any memory leaks. Valgrind is for Windows/WSL and Linux and leaks is for Mac. 
+
+To use valgrind: 
+```
+g++ file.cpp
+valgrind ./a.out
+```
+
+To use leaks: 
+```
+g++ file.cpp
+leaks -atExit -- ./a.out
+```
 ## Pointers as Parameters in Functions
+We can send pointers as parameters in functions just like any other type. 
+TODO: add examples
 ## Pointers as Returns in Functions
