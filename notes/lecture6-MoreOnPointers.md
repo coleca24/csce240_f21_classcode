@@ -78,6 +78,106 @@ g++ file.cpp
 leaks -atExit -- ./a.out
 ```
 ## Pointers as Parameters in Functions
-We can send pointers as parameters in functions just like any other type. 
-TODO: add examples
+We can send pointers as parameters in functions just like any other type. Let's say, for example, we want to create a print function for a newly created pointer array. We can implement that function in the following way: 
+
+In the main():
+```
+int *ptr = new int[5];
+for (int i = 0; i < 5; i++) {
+    ptr[i] = 1;
+}
+int size = 5;
+printArray(ptr, size);
+```
+```
+Output: 1 1 1 1 1
+```
+```
+void printArray(int*, int);
+
+void printArray(int* ptr, int size) {
+    for (int i = 0; i < size; i++) {
+        cout << ptr[i] << " ";
+    }
+    cout << "\n";
+}
+```
+The question that we then asked in class was, is this call-by-reference or call-by-value? We know that int* holds a memory address, so isn't that the same thing as sending a variable by reference (with the &)? In addition, we even confirmed that we can modify the value of the int array that the pointer is pointing to from the function ie. line 2 will change the value of the first element of the array that ptr is pointing to to 10 in both the function and in the main! 
+```
+void printArray(int* ptr, int size) {
+    ptr[0] = 10; 
+    for (int i = 0; i < size; i++) {
+        cout << ptr[i] << " ";
+    }
+    cout << "\n";
+}
+```
+**However**, this is **NOT** call-by-reference. We changed the value that the pointer was pointing to but not the actual pointer itself (which is the variable that we actually passed)! If we wanted to do that (let's say we wanted to append a value to the array), we would need to do something like this:
+In the main():
+```
+int *ptr = new int[5];
+for (int i = 0; i < 5; i++) {
+    ptr[i] = 1;
+}
+int size = 5;
+appendValue(ptr, size, 10); //want the array to be 1 1 1 1 1 10 after
+```
+```
+void appendValue(int*&, int&, int); //Note the & added to both the pointer and the size variable (we want both to change in the main)
+
+void appendValue(int*& ptr, int& size, int new_val) {
+    int *temp = ptr; // save the old array values
+    ptr = new int[size+1]; // Now the ptr in main will point to a new int array of size 6
+    
+    //Copy values over from old array
+    for (int i = 0; i < size; i++) {
+        ptr[i] = temp[i]; 
+    }
+    // Add the new value at the right index
+    ptr[size] = new_val; 
+    
+    //Increase the size. 
+    size++;
+    
+    // Deallocate the old array
+    delete [] temp;
+}
+```
+
 ## Pointers as Returns in Functions
+The other cool thing that we can do now is return arrays from functions (well, pointers to arrays, but still, arrays). So for instance, if I wanted to perform the same appending of a value without using call-by-reference, I could by returning the newly sized array. Example:
+In the main():
+```
+int *ptr = new int[5];
+for (int i = 0; i < 5; i++) {
+    ptr[i] = 1;
+}
+int size = 5;
+// Note that now I am setting it up such that the return is going to be 
+// set to the ptr variable. 
+ptr = appendValue(ptr, size, 10); //want the array to be 1 1 1 1 1 10 after
+```
+```
+int* appendValue(int*, int&, int); //Note the new return and the removal of & from the int*
+
+int* appendValue(int* ptr, int& size, int new_val) {
+    int *ret = new int[size+1]; // Create the array that will be returned. 
+    
+    //Copy values over from old array
+    for (int i = 0; i < size; i++) {
+        ret[i] = ptr[i]; 
+    }
+    // Add the new value at the right index
+    ret[size] = new_val; 
+    
+    //Increase the size. 
+    size++;
+    
+    // Deallocate the old array
+    delete [] ptr;
+    
+    //Return the new array
+    return ret;
+}
+```
+After running the code in the main, ptr is pointing to an array of size 6. 
