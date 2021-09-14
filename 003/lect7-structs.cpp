@@ -22,8 +22,6 @@ using std::string;
 int main(int argc, char **argv) {
     // Creating a new book (struct)
 
-    // Using curly braces: = {val1, val2};
-
     // What is the size of this struct?
 
     // Manual initialization of each property
