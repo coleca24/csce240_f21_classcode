@@ -30,9 +30,10 @@ book* addBook(const book*, book, int&);
 // TODO(on your own): add a removeBook function that will search for
 // a title and remove that from the collection of structs.
 // remove last book
-book* removeBook(book*, int& size);
+// book* removeBook(book*, int& size);
 // remove at given index
 book* removeBook(book*, int index, int& size);
+// collection2 = deleteBook(collection2, 0, size);
 
 using std::cout;
 int main(int argc, char **argv) {
@@ -45,10 +46,10 @@ int main(int argc, char **argv) {
     // cout << b1.words << "\n";
     book b2 = {"title", "author", 10.99, 10000, "fiction"};
     // cout << b2.title << "\n";
-    printBook(b2);
+    // printBook(b2);
     // Create the initBook function.
-    initBook(b1);
-    printBook(b1);
+    // initBook(b1);
+    // printBook(b1);
     // Static allocation of book collection
     book collection[3];
     // Create printCollection() function
@@ -61,9 +62,17 @@ int main(int argc, char **argv) {
     // addBook() function
     int size = 0;
     collection2 = addBook(collection2, b2, size);
-    collection2 = addBook(collection2, b2, size);
-    collection2 = addBook(collection2, b2, size);
-
+    cout << "Size of collection: " << size << "\n";
+    for (int i =0; i < size; i++) {
+        printBook(collection2[i]);
+    }
+    // collection2 = addBook(collection2, b2, size);
+    // collection2 = addBook(collection2, b2, size);
+    collection2 = removeBook(collection2, 0, size);
+    cout << "Size of collection: " << size << "\n";
+    for (int i =0; i < size; i++) {
+        printBook(collection2[i]);
+    }
     delete [] collection2;
     return 0;
 }
@@ -96,5 +105,19 @@ book* addBook(const book* col, book b, int& size) {
     delete [] col;
     ret[size].title = b.title;
     size++;
+    return ret;
+}
+
+book* removeBook(book* col, int index, int& size) {
+    book * ret = new book[size-1];
+    for (int i = 0; i < size; i++) {
+        if (i < index) {
+            ret[i].title = col[i].title;
+        } else if (i > index) {
+            ret[i-1].title = col[i].title;
+        }
+    }
+    delete [] col;
+    size--;
     return ret;
 }
