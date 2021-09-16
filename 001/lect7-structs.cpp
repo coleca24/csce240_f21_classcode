@@ -4,6 +4,7 @@
 #include <sstream>
 
 using std::string;
+using std::cout;
 
 // Basically an object with no functions and
 // everything is public.
