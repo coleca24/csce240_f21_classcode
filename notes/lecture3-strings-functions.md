@@ -236,6 +236,10 @@ int add(int &n1, int n2) {
 output: 1
 ```
 
+This illustration (thank you Claude!) does a great job in showing the difference between the two. Notice that when the cup that is passed by reference to the fillCup() function, the changes that are made in the function are reflected back (they both get filled). 
+
+![call-by-value-and-call-by-reference1](https://user-images.githubusercontent.com/3376451/134009491-142c82f5-a02b-4c24-bad4-36a71966f243.gif)
+
 ### `const` keyword
 Sometimes you will have to use call-by-reference with functions (for example when you are passing array). However, you may not want that function to modify the value(s) of variable that you send. In order to protect these variables, you can modify them with the `const` keyword. 
 
