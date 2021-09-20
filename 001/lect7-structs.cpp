@@ -19,6 +19,9 @@ void print(book);
 
 // initLibrary(library, size);
 void initLibrary(book[], int);
+// lib = addBook(lib, newBook, numOfBooks);
+book * addBook(book*, book, int&);
+book * removeBook(int index, book* lib, int& size);
 
 // TODO(class): add initBook function to get in the data from the user.
 
@@ -36,7 +39,7 @@ int main(int argc, char **argv) {
     b1.author = "author";
     // Using curly braces: = {val1, val2};
     book b2 = {"title", "author", 1.2, 500};
-    print(b2);
+    // print(b2);
     // What is the size of this struct?
 
     // Manual initialization of each property
@@ -46,19 +49,22 @@ int main(int argc, char **argv) {
     // Static allocation of book collection
     book library[4];
     int size = 4;
-    initLibrary(library, size);
-    // Create printCollection() function
-    for (int i = 0; i < size; i++) {
-        std::cout << i << "\n";
-        print(library[i]);
-    }
+    // initLibrary(library, size);
+    // // Create printCollection() function
+    // for (int i = 0; i < size; i++) {
+    //     std::cout << i << "\n";
+    //     print(library[i]);
+    // }
     // Dynamic allocation of book collection with pointers
     book * lib;
     lib = new book[0];
     // addBook() function
-    book newBook;
+    book newBook = {"book"};
     int numOfBooks;
-    // addBook(lib, newBook, numOfBooks);
+    lib = addBook(lib, newBook, numOfBooks);
+    for (int i = 0; i < numOfBooks; i++) {
+        print(lib[i]);
+    }
     return 0;
 }
 
@@ -86,4 +92,20 @@ void initLibrary(book lib[], int size) {
         }
         count++;
     }
+}
+
+book * addBook(book* lib, book b, int& size) {
+    book * ret = new book[size+1];
+    for (int i = 0; i < size; i++) {
+        ret[i].title = lib[i].title;
+    }
+    if (size > 0) {
+        delete [] lib;
+    } else {
+        delete lib;
+    }
+    // 
+    ret[size].title = b.title;
+    size++;
+    return ret;
 }
