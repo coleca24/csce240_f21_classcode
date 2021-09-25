@@ -1,4 +1,4 @@
-# Lecture 9 - Intro to Classes and Objects and Constructors
+# Lecture 10 - Object Constructors
 
 ## C++ Class Definitions
 To define an object in C++ you will need two files: a header (or .h file) and an implementation file (.cpp). In the header file (.h) you should have the class definition. This is just a collection of prototypes for member functions as well as declarations of member variables. The syntax for this is the following: 
