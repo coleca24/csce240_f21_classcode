@@ -43,5 +43,26 @@ class ArrayList {
 };
 ```
 
+ArrayList.cpp
+```
+#include "./ArrayList.h"
+
+void ArrayList::printHelloWorld() {
+  std::cout << "Hello World\n";
+}
+
+```
+
+And now the main() function. I usually put mine in a file named main.cpp. 
+```
+#include "./ArrayList.h"  // need to include the header here too. 
+
+int main() {
+  ArrayList a; // Create the object
+  a.printHelloWorld(); // Call the member function
+  return 0; 
+}
+```
+
 ## Using a `static` Variable or Function
 
