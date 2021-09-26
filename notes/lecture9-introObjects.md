@@ -24,6 +24,24 @@ class ArrayList {
 By default if no modifer is given then everything defined in the class will be `private`.
 
 ### The Implementation file (.cpp)
+This is the file that you will write all of your actual C++ code in. It should be called the same as your header (.h) file. For example, if you were to have make an ArrayList object, then you would have an ArrayList.h and an ArrayList.cpp. The .cpp would use the `#include` keyword at the top to make the connection to the header file (see below): 
+```
+// Content of ArrayList.cpp 
+#include "./ArrayList.h"  // Assuming that ArrayList.h is in the same folder as the ArrayList.cpp file. 
+```
+After the connection is made then you can start writing functions. Below is an example of a simple function that will print "Hello World". Note all of the connections and syntax. 
+
+ArrayList.h
+```
+#include <iostream> 
+
+class ArrayList {
+  public: 
+    void printHelloWorld();
+  private: 
+     
+};
+```
 
 ## Using a `static` Variable or Function
 
