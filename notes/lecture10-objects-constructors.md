@@ -22,8 +22,25 @@ ArrayList::ArrayList() {
   data = new int[size]; 
 }
 ```
-### Parameterized/Alternate Constructors 
+### Parameterized/Alternate Constructors
+An object can have as many alternate constructors as you want as long as each definition is distinguishable from each other (varied parameters). For example, we may want to make a constructor for our ArrayList that takes in a size and a value to initialize each value of the `data` array to. We might design that constructor to look like this: 
+```
+ArrayList::ArrayList(int size, int value) {
+  this->size = size; 
+  data = new int[size]; 
+  for (int i = 0; i < size; i++) {
+    data[i] = value; 
+  }
+}
+```
+
+**`this`**
+**`explicit`**
 
 ### Copy Constructor
 
 ### Destructors
+
+## Adding Default Values
+
+## Using a Constant Variable
