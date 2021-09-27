@@ -35,12 +35,57 @@ ArrayList::ArrayList(int size, int value) {
 ```
 
 **`this`**
-**`explicit`**
+The `this` keyword is similar to Java. It is a pointer to the object itself (that is why we must use the `->` syntax). We needed to use the `this` keyword in the constructor above because the parameter passed to the constructor was named the same as the member variable (`size`). To set the object's `size` and not just the local passed `size` we need to execute the assignment: `this->size = size`. 
+
+**Adding Default Values**
 
 ### Copy Constructor
+The copy constructor is a special constructor that does not exist in Java. Its job is to tell the C++ compiler how to actually copy your object. This allows you to be able to pass an object by value into a function (create a local copy). Its implementation is very straightforward. The goal is just to copy the contents of the passed object into the object being constructed. 
+
+ArrayList.h
+```
+class ArrayList {
+  public: 
+    ArrayList();
+    ArrayList(const ArrayList&); // Copy Constructor
+  private: 
+    int *data; 
+    int size;
+};
+```
+ArrayList.cpp
+```
+ArrayList::ArrayList(const ArrayList & copy) {
+  size = copy.size; 
+  data = new int[size];
+  for (int i = 0; i < size; i++)  {
+    data[i] = copy.data[i];
+  }
+}
+```
 
 ### Destructors
+An object's destructor is called automatically at when an object goes out of scope. The C++ compiler will automatically create a default destructor for you if you do not. However, it will not do what we probably want it to do! Below, the destructor has been added to the class definition of our ArrayList: 
 
-## Adding Default Values
+ArrayList.h
+```
+class ArrayList {
+  public: 
+    ArrayList();
+    ArrayList(const ArrayList&);
+    ~ArrayList();  // destructor
+  private: 
+    int *data; 
+    int size;
+};
+```
+For objects that use dynamic memory, the destructor for an object will clean up (deallocate) any dynamic memory created in the object. For example, the destructor for the ArrayList object would look like this: 
+
+ArrayList.cpp
+```
+ArrayList::~ArrayList() {
+  delete [] data;
+}
+```
 
 ## Using a Constant Variable
