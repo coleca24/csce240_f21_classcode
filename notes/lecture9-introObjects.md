@@ -65,4 +65,81 @@ int main() {
 ```
 
 ## Using a `static` Variable or Function
+`static` variables and functions are those that do not belong to a certain instance of an object, but instead, belong to the all instances of the class (or the class itself). One example of when you might want to use a `static` variable is when you want to keep track of how many times a function is called (we will use that `printHelloWorld()` function as an example!)
+
+### Defining a `static` variable and function
+Let's first define the `static` variable and function. We will make the variable `private` and make a `public` function to return it. 
+
+ArrayList.h
+```
+#include <iostream> 
+
+class ArrayList {
+  public: 
+    void printHelloWorld();
+    static void getNum();
+  private: 
+    static int num;
+};
+```
+
+### Initializing the variable
+You will want to initialize this just once when the class is first defined. We will do this at the top of the .cpp implementation file.
+
+ArrayList.cpp
+```
+int ArrayList::num = 0;  // Make sure that you do not miss the ArrayList::
+```
+
+### Changing the variable
+In this particular use case, we will want the variable `num` to increase everytime the `printHelloWorld()` function is called. 
+
+ArrayList.cpp
+```
+int ArrayList::num = 0;  
+
+void ArrayList::printHelloWorld() {
+  std::cout << "Hello World\n";
+  num++; // increase the static num value here.
+}
+
+```
+
+We also want to create the `static getNum()` function as well. This will just print the static variable's value.  
+
+ArrayList.cpp
+```
+int ArrayList::num = 0;  
+
+void ArrayList::printHelloWorld() {
+  std::cout << "Hello World\n";
+  num++; 
+}
+
+void ArrayList::getNum() {
+  std::cout << "Value of num: " << num << "\n";
+}
+
+```
+
+### Accessing this `static` function in the `main()`
+Now we are ready to test it out in the `main()`. To call a static method, you will need to use the `ArrayList::` syntax. 
+
+```
+#include "./ArrayList.h"  // need to include the header here too. 
+
+int main() {
+  ArrayList a; 
+  a.printHelloWorld(); 
+  a.printHelloWorld();
+  ArrayList::getNum();  // This is the call to getNum()
+  return 0; 
+}
+```
+```
+Output: 
+Hello World
+Hello World
+The value of num 2
+```
 
