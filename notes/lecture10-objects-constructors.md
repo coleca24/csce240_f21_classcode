@@ -90,3 +90,7 @@ ArrayList::~ArrayList() {
 ```
 
 ## Using a Constant Variable
+
+## Getters and Setters
+
+## Constant vs. Non-constant functions
