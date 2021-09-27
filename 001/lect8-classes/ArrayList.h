@@ -11,6 +11,7 @@ class ArrayList {
         ~ArrayList();  // Destructor
         int getSize() const;
         void print() const;
+        // [1, 2, 3] -> insert(1, 5) -> [1, 5, 2, 3]
         void insert(int index, int value);
  private:
         int *data;
