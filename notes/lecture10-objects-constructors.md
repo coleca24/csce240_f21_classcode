@@ -35,6 +35,7 @@ ArrayList::ArrayList(int size, int value) {
 ```
 
 **`this`**
+
 The `this` keyword is similar to Java. It is a pointer to the object itself (that is why we must use the `->` syntax). We needed to use the `this` keyword in the constructor above because the parameter passed to the constructor was named the same as the member variable (`size`). To set the object's `size` and not just the local passed `size` we need to execute the assignment: `this->size = size`. 
 
 **Adding Default Values**
