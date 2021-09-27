@@ -13,7 +13,15 @@ int main(int argc, char **argv) {
     // ArrayList a4 = 'c';
     ArrayList a4(a3);
     a4.print();
+    a4.insert(1, 5);
+    a4.print();
+    a4.remove(1);
+    a4.print();
     // a1.size;
+
+    // std::cout << a4[0] << "\n";
+
+    // std::cout << a4 << "\n";
     
     return 0;
 }
