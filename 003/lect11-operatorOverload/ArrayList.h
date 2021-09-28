@@ -16,6 +16,15 @@ class ArrayList {
         // [1,2,3,4,5] -> remove(1) -> [1,3,4,5]
         bool remove(int);
 
+        // Operators
+        int operator[](int) const;
+        int& operator[](int);
+        bool operator==(const ArrayList &) const;
+        void operator()(int, int);
+       //  void operator()(int, int, int);
+       const ArrayList & operator=(const ArrayList &);
+
+       friend ostream & operator<<(ostream&, ArrayList&);
 
  private:
         int *data;

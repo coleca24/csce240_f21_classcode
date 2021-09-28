@@ -45,6 +45,48 @@ int ArrayList::getData(int index) const {
     }
 }
 
+int ArrayList::operator[](int index) const{
+    if (index >= 0 && index < size) {
+        return data[index];
+    } else {
+        std::cout << "Invalid Index\n";
+        exit(0);
+    }
+}
+int& ArrayList::operator[](int index) {
+    return data[index];
+}
+
+bool ArrayList::operator==(const ArrayList & rhs) const {
+    bool ret = true;
+    if (size != rhs.size) {
+        ret = false;
+    } else {
+        for (int i = 0; i < size; i++) {
+            if (data[i] != rhs[i]) {
+                ret = false;
+                break;
+            }
+        }
+    }
+    return ret;
+}
+
+const ArrayList & ArrayList::operator=(const ArrayList & rhs) {
+    size = rhs.getSize();
+    delete [] data;
+    data = new int[size];
+    for (int i = 0; i < size; i++) {
+        data[i] = rhs[i];
+    }
+    return *this;
+}
+
+void ArrayList::operator()(int index, int val) {
+    // ADD error checking on index
+    data[index] = val;
+}
+
 void ArrayList::print() const {
     for (int i = 0; i < size; i++) {
         std::cout << data[i] << " ";
