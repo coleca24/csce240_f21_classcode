@@ -20,6 +20,7 @@ int main(int argc, char **argv) {
     // a1.size;
 
     // std::cout << a4[0] << "\n";
+    // a4.operator[](0)
 
     // std::cout << a4 << "\n";
     
