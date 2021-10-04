@@ -87,6 +87,22 @@ void ArrayList::operator()(int index, int val) {
     data[index] = val;
 }
 
+ArrayList ArrayList::operator++() {
+    for (int i = 0; i < size; i++) {
+        data[i] += 1;
+    }
+    return *this;
+}
+
+// Post
+ArrayList ArrayList::operator++(int) {
+    ArrayList temp(*this);
+    for (int i = 0; i < size; i++) {
+        data[i] += 1;
+    }
+    return temp;
+}
+
 void ArrayList::print() const {
     for (int i = 0; i < size; i++) {
         std::cout << data[i] << " ";
