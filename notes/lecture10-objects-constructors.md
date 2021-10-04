@@ -90,7 +90,118 @@ ArrayList::~ArrayList() {
 ```
 
 ## Using a Constant Variable
+You can define constant variables in an object as member variables. Example: `pi` variable below. 
+
+ArrayList.h
+```
+class ArrayList {
+  public: 
+    ArrayList();
+    ArrayList(const ArrayList&);
+    ~ArrayList();  // destructor
+  private: 
+    int *data; 
+    int size;
+    const float pi; 
+};
+```
+
+To initialize them, you will need to use the following syntax in the .cpp implemenation file: 
+ArrayList.cpp
+```
+ArrayList::ArrayList() : pi(3.14) {
+  /// ....
+}
+```
+You cannot just say `pi = 3.14` in the body of the constructor (the `=` operator does not work for const variables - for good reason!). If you had multiple constant variables you would list them like this (assume pi, num1, and num2 are all const). 
+ArrayList.cpp
+```
+ArrayList::ArrayList() : pi(3.14), num1(10), num2(8) {
+  /// ....
+}
+```
+**Remember** You will need to do this for each constructor!
+
+## Member Functions
+You can now define an infinite set of member functions. For each function, you will want to add a prototype in the header (with a return type, name and parameter type list) and then you will add the function implementation in the .cpp implementation file in the following form: 
+
+```
+return_type ClassName::function_name(para1 name1, para2 name2 ... ) {
+}
+```
+Notice that the return type of the function is before the ClassName::!
+
+We went over two examples in class, the insert and the remove. See the code in 002/lect8-classes for the implementation of those two functions. 
 
 ## Getters and Setters
+When you are defining your functions within a class and another object is passed as an argument then you will have direct access to their member variables via the `.` operator (look at the copy constructor implementation for an example). This is not the best practice. Instead, you would want to define getters and setters (or accessors and mutators). The reason being is that you can adding some extra checking within the functions so that you are not accidentally setting something like size equal to a negative number (or somthing crazy like that). For example, for the size variable, you would write these like so in the header:
+ArrayList.h
+```
+class ArrayList {
+  public: 
+    ArrayList();
+    ArrayList(const ArrayList&);
+    ~ArrayList();  
+    int getSize();  // Getter for size 
+  private: 
+    int *data; 
+    int size;
+    const float pi; 
+    void setSize(int);  // Setter for size
+};
+```
+Notice that the getter is usually public and the setter is always private. The implementation for these, might go something like this: 
+ArrayList.cpp
+```
+int ArrayList::getSize() {  // Notice that the return goes before the ArrayList::
+  return size; 
+}
+
+void ArrayList::setSize(int size) {
+  if (size >= 0) {
+    this->size = size; 
+  } else {
+    std::cout << "Invalid size\n";
+    exit(1);
+  }
+}
+```
+Notice that the `setSize(int)` first checks to see if the size is non-negative and only set it if it is. If not, then it returns an error message and exits the program. 
 
 ## Constant vs. Non-constant functions
+Now, if you try to straight use these in the copy constructor, for example: 
+ArrayList.cpp
+```
+ArrayList::ArrayList(const ArrayList & copy) {
+  setSize(copy.getSize()); 
+  data = new int[size];
+  for (int i = 0; i < size; i++)  {
+    data[i] = copy.data[i];
+  }
+}
+```
+You will get an error! The error relates to the fact that `copy` is a constant object that can only call functions that have been const modified. In C++, you have to tell the compiler which of your member functions a constant object should be able to call and which they cannot. To define a const modified function (one that a constant object can call) you simply add the const keyword after the protoype in the header and in the cpp file: 
+
+ArrayList.h
+```
+class ArrayList {
+  public: 
+    ArrayList();
+    ArrayList(const ArrayList&);
+    ~ArrayList();  
+    int getSize() const;  // Added const here
+  private: 
+    int *data; 
+    int size;
+    const float pi; 
+    void setSize(int); 
+};
+```
+
+ArrayList.cpp
+```
+int ArrayList::getSize() const {  
+  return size; 
+}
+```
+Notice that we did not add a `const` to the setter for size. That is because the only functions that should be const modified are the ones that will NOT modify the object that is calling it. `setSize(int)` by very nature will modify the object! 
