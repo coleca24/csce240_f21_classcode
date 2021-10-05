@@ -2,6 +2,7 @@
 #include <iostream>
 
 class ArrayList {
+       friend std::ostream & operator<<(std::ostream&, ArrayList);
  public:
         ArrayList();  // default
         explicit ArrayList(int size, int val = 0);
@@ -26,8 +27,8 @@ class ArrayList {
 
        // Todo(lecture 12)
         // operator++ (pre and post) - Think about what it should return
-       // ArrayList & operator++();  // pre
-       // ArrayList operator++(int);  // post
+       ArrayList & operator++();  // pre
+       ArrayList operator++(int);  // post
         // operator+(ArrayList) - pairwise
         // operator+(int) - append
         // friends

@@ -123,6 +123,30 @@ bool ArrayList::remove(int index) {
     return false;
 }
 
+ArrayList & ArrayList::operator++() {
+    for (int i = 0; i < size; i++) {
+        data[i] = data[i] + 1;
+        // data[i] = data[i]++;
+    }
+    return *this;
+} // pre
+
+ArrayList ArrayList::operator++(int) {
+    ArrayList ret(*this);
+    for (int i = 0; i < size; i++) {
+        data[i] = data[i] + 1;
+    }
+    return ret;
+}
+
+std::ostream & operator<<(std::ostream& os, ArrayList a) {
+    for (int i = 0; i < a.getSize(); i++) {
+        os << a.getData(i) << " ";
+    }
+    os << "\n";
+    return os;
+}
+
 ArrayList::~ArrayList() {
     // std::cout << "destructor " << numAL << "\n";
     delete [] data;
