@@ -24,6 +24,14 @@ class ArrayList {
        //  void operator=(const ArrayList &);  // non-cascadable
        const ArrayList & operator=(const ArrayList &);
 
+       // Todo(lecture 12)
+        // operator++ (pre and post) - Think about what it should return
+       // ArrayList & operator++();  // pre
+       // ArrayList operator++(int);  // post
+        // operator+(ArrayList) - pairwise
+        // operator+(int) - append
+        // friends
+
  private:
         int *data;
         int size;
