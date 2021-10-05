@@ -72,7 +72,7 @@ bool ArrayList::operator==(const ArrayList & rhs) const {
     return ret;
 }
 
-const ArrayList & ArrayList::operator=(const ArrayList & rhs) {
+ArrayList & ArrayList::operator=(const ArrayList & rhs) {
     size = rhs.getSize();
     delete [] data;
     data = new int[size];
@@ -85,6 +85,29 @@ const ArrayList & ArrayList::operator=(const ArrayList & rhs) {
 void ArrayList::operator()(int index, int val) {
     // ADD error checking on index
     data[index] = val;
+}
+
+ArrayList & ArrayList::operator++() {
+    for (int i = 0; i < size; i++) {
+        data[i] += 1;
+    }
+    return *this;
+}
+
+ArrayList ArrayList::operator++(int) {
+    ArrayList ret(*this);
+    for (int i = 0; i < size; i++) {
+        data[i] += 1;
+    }
+    return ret;
+}
+
+std::ostream& operator<<(std::ostream & os, ArrayList a) {
+    for (int i = 0; i < a.getSize(); i++) {
+        os << a[i] << " ";
+    }
+    os << "\n";
+    return os;
 }
 
 void ArrayList::print() const {

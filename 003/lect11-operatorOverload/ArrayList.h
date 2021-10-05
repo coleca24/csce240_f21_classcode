@@ -3,7 +3,7 @@
 
 class ArrayList {
  public:
-       // friend ostream& operator<<(ostream &, ArrayList);
+       friend std::ostream& operator<<(std::ostream &, ArrayList);
        // friend istream& operator>>(istream &, ArrayList);
         ArrayList();  // default
         explicit ArrayList(int size, int val = 0);
@@ -24,12 +24,12 @@ class ArrayList {
         bool operator==(const ArrayList &) const;
         void operator()(int, int);
        //  void operator()(int, int, int);
-       const ArrayList & operator=(const ArrayList &);
+       ArrayList & operator=(const ArrayList &);
 
        // Todo(lecture 12)
         // operator++ (pre and post) - Think about what it should return
-       //  ArrayList operator++();  // pre
-       //  ArrayList operator++(int);  // post
+       ArrayList & operator++();  // pre
+       ArrayList operator++(int);  // post
         // operator+(ArrayList) - pairwise
         // operator+(int) - append
         // friends
