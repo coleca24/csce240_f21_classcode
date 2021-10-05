@@ -3,6 +3,8 @@
 
 class ArrayList {
  public:
+       // friend ostream& operator<<(ostream &, ArrayList);
+       // friend istream& operator>>(istream &, ArrayList);
         ArrayList();  // default
         explicit ArrayList(int size, int val = 0);
         ArrayList(const ArrayList &);
@@ -24,7 +26,13 @@ class ArrayList {
        //  void operator()(int, int, int);
        const ArrayList & operator=(const ArrayList &);
 
-       friend ostream & operator<<(ostream&, ArrayList&);
+       // Todo(lecture 12)
+        // operator++ (pre and post) - Think about what it should return
+       //  ArrayList operator++();  // pre
+       //  ArrayList operator++(int);  // post
+        // operator+(ArrayList) - pairwise
+        // operator+(int) - append
+        // friends
 
  private:
         int *data;
