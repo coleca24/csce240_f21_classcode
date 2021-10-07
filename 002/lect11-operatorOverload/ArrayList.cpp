@@ -11,6 +11,11 @@ ArrayList::ArrayList(int size, int val){
     for (int i = 0; i <size; i++) {
         data[i] = val;
     }
+    // string ret =""
+    // for 
+    //    ret += data[i]
+    // SuperString s(ret);
+    // s.data = ne
 }
 
 ArrayList::ArrayList(const ArrayList & copy){
@@ -101,6 +106,22 @@ ArrayList ArrayList::operator++(int) {
         data[i] += 1;
     }
     return temp;
+}
+ArrayList ArrayList::operator+(int newVal) const {
+    ArrayList temp(size+1);
+    for (int i = 0; i < size; i ++) {
+        temp.data[i] = data[i];
+    }
+    temp.data[size] = newVal;
+    return temp;
+}
+
+ostream& operator<<(ostream & os, ArrayList a) {
+    for (int i = 0; i < a.getSize(); i++) {
+        os << a.getData(i) << " ";
+    }
+    os << "\n";
+    return os;
 }
 
 void ArrayList::print() const {

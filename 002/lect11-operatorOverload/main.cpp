@@ -32,12 +32,21 @@ int main(int argc, char **argv) {
     // a = b = c;
     // a = b.operator=(c);
     // a.operator=(b.operator=(c));
-    b.print();
-    a = b++;
-    a = b;  // a.operator=(b)
-    a.print();
-    b.print();
-    a = ++b;
+    // b.print();
+    // a = b++;
+    c = a = b;  // a.operator=(b)
+    std::cout << a << b;
+    // std::cin >> a >> b;
+    c = a + 1;  // a.operator+(1)
+    std::cout << a;
+    std::cout << c;
+    // a << std::cout;
+    // a.print();
+    // b.print();
+    // a = ++b;
+    // string s;
+    // std::cout << s;
+    // System.out.println(a);
     // for (int i = 0; i < 10; i++) {}
     // int i1(0), i2(1);
     // i1 = i2++;
@@ -51,5 +60,7 @@ int main(int argc, char **argv) {
     // operator<<(ArrayList) {
 
     // }
+
+    // ArrayList<float> a; 
     return 0;
 }
