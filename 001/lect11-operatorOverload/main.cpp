@@ -46,7 +46,8 @@ int main(int argc, char **argv) {
     b = a++;
     a.print();
     b.print(); 
-
+    std::cout << a << " " << b;   // cout.operator<<(a)
+    // c = a = b;
     int i = 0, j = 0;
     j = i++;
     // std::cout << j << " " << i << "\n";

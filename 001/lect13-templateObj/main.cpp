@@ -1,5 +1,6 @@
 // Copyright 2021 Casey A Cole
 #include <iostream>
+#include "./ArrayList.h"
 #include "./ArrayList.cpp"
 
 using std::cout;

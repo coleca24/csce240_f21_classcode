@@ -1,32 +1,31 @@
 #include "./ArrayList.h"
 
-
-ArrayList::ArrayList() {
+template <class T>
+ArrayList<T>::ArrayList() {
     size = 0;
-    data = new int[size];
+    data = new T[size];
 }
-
-
-ArrayList::ArrayList(int size, int val) {
+template <class T>
+ArrayList<T>::ArrayList(int size, T val) {
     this->size = size;
-    data = new int[size];
+    data = new T[size];
     for (int i = 0; i <size; i++) {
         data[i] = val;
     }
 }
-
-ArrayList::ArrayList(const ArrayList & copy) {
+template <class T>
+ArrayList<T>::ArrayList(const ArrayList<T> & copy) {
     // size = copy.size;
     setSize(copy.getSize());
     // data = copy.data;
-    data = new int[size];
+    data = new T[size];
     for (int i = 0; i < size; i++) {
         data[i] = copy.data[i];
     }
 }
 
-
-void ArrayList::setSize(int size) {
+template <class T>
+void ArrayList<T>::setSize(int size) {
     if (size >= 0) {
         this->size = size;
     } else {
@@ -35,13 +34,13 @@ void ArrayList::setSize(int size) {
     }
 }
 
-
-int ArrayList::getSize() const {
+template <class T>
+int ArrayList<T>::getSize() const {
     return size;
 }
 
-
-int ArrayList::getData(int index) const {
+template <class T>
+T ArrayList<T>::getData(int index) const {
     if (index >= 0 && index < size) {
         return data[index];
     } else {
@@ -50,16 +49,16 @@ int ArrayList::getData(int index) const {
     }
 }
 
-
-void ArrayList::print() const {
+template <class T>
+void ArrayList<T>::print() const {
     for (int i = 0; i < size; i++) {
         std::cout << data[i] << " ";
     }
     std::cout << "\n";
 }
 
-
-int ArrayList::operator[](int index) const {
+template <class T>
+T ArrayList<T>::operator[](int index) const {
     if (index >= 0 && index < size) {
         return data[index];
     } else {
@@ -67,13 +66,13 @@ int ArrayList::operator[](int index) const {
         exit(0);
     }
 }
-
-int& ArrayList::operator[](int index) {
+template <class T>
+T& ArrayList<T>::operator[](int index) {
     return data[index];
 }
 
-
-bool ArrayList::operator==(const ArrayList & rhs) const {
+template <class T>
+bool ArrayList<T>::operator==(const ArrayList<T> & rhs) const {
     bool ret = true;
     if (size != rhs.size) {
         ret = false;
@@ -88,42 +87,42 @@ bool ArrayList::operator==(const ArrayList & rhs) const {
     return ret;
 }
 
-
-const ArrayList & ArrayList::operator=(const ArrayList & rhs) {
+template <class T>
+const ArrayList<T> & ArrayList<T>::operator=(const ArrayList<T> & rhs) {
     size = rhs.getSize();
     delete [] data;
-    data = new int[size];
+    data = new T[size];
     for (int i = 0; i < size; i++) {
         data[i] = rhs[i];
     }
     return *this;
 }
 
-
-void ArrayList::operator()(int index, int val) {
+template <class T>
+void ArrayList<T>::operator()(int index, T val) {
     // ADD error checking on index
     data[index] = val;
 }
 
-
-ArrayList ArrayList::operator+(int newVal) const {
-    ArrayList temp(size+1);
+template <class T>
+ArrayList<T> ArrayList<T>::operator+(T newVal) const {
+    ArrayList<T> temp(size+1);
     for (int i = 0; i < size; i ++) {
         temp.data[i] = data[i];
     }
     temp.data[size] = newVal;
     return temp;
 }
-
-ostream& operator<<(ostream & os, ArrayList a) {
+template <class U>
+ostream& operator<<(ostream & os, ArrayList<U> a) {
     for (int i = 0; i < a.getSize(); i++) {
         os << a.getData(i) << " ";
     }
     os << "\n";
     return os;
 }
-
-ArrayList::~ArrayList() {
+template <class T>
+ArrayList<T>::~ArrayList() {
     // std::cout << "destructor " << numAL << "\n";
     delete [] data;
 }

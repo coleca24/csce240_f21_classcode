@@ -1,7 +1,9 @@
 
 #include <iostream>
+using std::ostream;
 
 class ArrayList {
+       friend ostream& operator<<(ostream&, ArrayList);
  public:
         ArrayList();  // default
         explicit ArrayList(int size, int val = 0);
@@ -11,7 +13,7 @@ class ArrayList {
         void print() const;
         int getSize() const;
         int getData(int) const;
-        int operator[](int) const;
+        int  operator[](int) const;
         int& operator[](int);
         bool operator==(const ArrayList &) const;
         void operator()(int, int);
