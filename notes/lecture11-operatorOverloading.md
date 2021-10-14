@@ -19,6 +19,8 @@ a + b; // == [1,1,1,1,1,2,2]
 ```
 We would also want this operator to be cascade capable. This means that we would want to be able to do something like `c + b + a` (assuming a, b, and c are all objects). In order to make something cascade capable you usually return the object itself. So, in this case if we want this operator in the ArrayList to be cascade capable then we will want to return an ArrayList object. 
 
+While we are at it, let's also implement the assignment operator (`=`). That way we can do things like `c = a + b`. The assignment operator should also be cascade capable (we would want to do something like `c = a = b` right?). 
+
 ## Declaring in Header
 The first step is to declare that you will be overloading an operator in the header file for an object. Let's thing about how the `+` operator is actually called. `a+b` is equivilant to `a.operator+(b)`. Keeping that in mind, the definition below should make sense! `b` is an ArrayList so you will need to take in an ArrayList object. 
 
@@ -60,6 +62,7 @@ ArrayList ArrayList::operator+(ArrayList rhs) {
 ```
 
 ## Calling in the main()
+Now we are ready to call it in the main! It would go something like this: 
 
 ## Adding call-by-reference
 
