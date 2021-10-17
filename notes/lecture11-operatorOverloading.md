@@ -96,6 +96,31 @@ int main() {
 ```
 
 ## Adding call-by-reference
-A general rule to follow, is that when possible, pass object as call by reference. Remember when you pass by value you have to make a full copy of the object. That will eat up our space very quickly! So instead we will want to try to add as much call-by-reference as we can. However, we will not be able to do it in all cases. For example, in our `operator+` because we are returning an object that we made that is local to that function, then we need to return it by value. 
+A general rule to follow, is that when possible, pass object as call by reference. Remember when you pass by value you have to make a full copy of the object. That will eat up our space very quickly! So instead we will want to try to add as much call-by-reference as we can. However, we will not be able to do it in all cases. 
+
+To decide if an object can be **returned by reference**, you need to consider how it is implemented. For example, in our `operator+` because we are returning an object that we made that is local to that function, then we need to return it by value. If we did not then we would be returning a reference to an object that is out of scope and, therefore, deallocated. In contrast, the `operator=` returns the calling object. That means that it will be safe to return it by reference. The calling object will not go out of scope.
+
+To decide if an object can be **passed by reference**, you need to pay more attention to the call of the operator and what other operators the given operator will be interacting with. For example, the `operator=` iteracts with the `operator+` in the following: `c = a + b` so we need to make sure that what ever the `+` operator returns is compatible for the `=` operator. In addition, you must take into consideration any possible scope issues for the passed object. Here the `+` operator is returning an object by value, so the `=` operator should be taking one in by value as well. The scope of the returned object from the `+` operator is only good until it gets to the next call in the chain, so we will need to make a copy. 
+
+Our new prototypes for `operator+` and `operator=`: 
+```
+ArrayList & operator=(ArrayList);       // we can return by reference because we are returning a reference to the calling object that will not go out of scope.
+ArrayList operator+(ArrayList &);       // we can pass by reference because the object passed in will not go out of scope. 
+```
 
 ## Adding const
+We also need to now consider which of the call by reference returns and parameters should be kept const. In this case both should be made const. We do not want them changed. 
+
+Our new prototypes for `operator+` and `operator=`: 
+```
+const ArrayList & operator=(ArrayList);       // we make the return const so that it is not modified before it is sent to the next link in the chain (if cascading)
+ArrayList operator+(const ArrayList &);       // we make the parameter const because we do not want to accidently modify it inside the function. 
+```
+
+Lastly, we need to decide which of these two functions should be const qualified (constant object should be able to call). Certainly the `=` operator should not be const qualified since its only job is to do assignment (which changes the calling object), but what about the `+` operator? If we look back at the definition we will find that it does not modify the calling object and therefore can be const modified. 
+
+Our final prototypes: 
+```
+const ArrayList & operator=(ArrayList);
+ArrayList operator+(const ArrayList &) const;       
+```
