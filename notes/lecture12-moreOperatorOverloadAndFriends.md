@@ -20,7 +20,28 @@ They are both implemented in the same way:
 ```
 The way that the setter works is that it returns the memory location of the element so that it can be set. 
 
-## Pre and Post
-These
+## Pre and Post (++Obj and Obj++) 
+These are unary operators that do not take in any logical parameter. However, they work in two distinct ways. 
+
+Let's take the example of just ints for now, for the pre: 
+```
+int x(0), y(0); 
+x = ++y; 
+```
+After execution, both x and y will have the value of 1. 
+
+However, this is not the case for the post. 
+```
+int x(0), y(0); 
+x = y++; 
+```
+After this is executed, the value of y will be 1, but the value of x will still be 0. That is what is meant by "post" increment. First the old value is returned and *then* it is incremented. 
+
+So, we will want to have a way that the C++ compiler can tell the difference when we are using the operator on either side of the object. There was really no clean way of doing this so the C++ developers decided on this: 
+```
+ArrayList operator++();     // This one is for pre
+ArrayList operator++(int);  // This one is for post
+```
+Note that the `int` that is passed to the post is absolute garbage and should not be used at all in the implementation! 
 
 ## Friends
