@@ -42,6 +42,29 @@ So, we will want to have a way that the C++ compiler can tell the difference whe
 ArrayList operator++();     // This one is for pre
 ArrayList operator++(int);  // This one is for post
 ```
-Note that the `int` that is passed to the post is absolute garbage and should not be used at all in the implementation! 
+Note that the `int` that is passed to the post is absolute garbage and should not be used at all in the implementation! The implementation of these two would be: 
+
+For pre, the object doing the calling and the object that we return will have the same values. So in this instance, there will be no reason to create a new object in the method. Instead, we can just increment the object and return the calling object itself (* this). 
+```
+ArrayList ArrayList::operator++() {
+  for (int i = 0; i < size; i++) {
+    data[i] = data[i] + 1; 
+  }
+  return *this; 
+}
+```
+
+For the post, we want to return the past values **and then** increment. So, for this case, we will need to create an object that has the old values, modify the calling object and then return the other object (with the past values). 
+
+The implementation for this would be:
+```
+ArrayList ArrayList::operator++(int) {
+  ArrayList old(*this);                 // Taking advantage of the copy constructor here to make old a copy of the calling object. 
+  for (int i = 0; i < size; i++) {
+    data[i] = data[i] + 1; 
+  }
+  return old; 
+}
+```
 
 ## Friends
