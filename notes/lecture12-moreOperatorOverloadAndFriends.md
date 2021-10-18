@@ -68,3 +68,24 @@ ArrayList ArrayList::operator++(int) {
 ```
 
 ## Friends
+Sometimes we want to overload an operator in which our object is not the one doing the calling. For example the `operator<<`: 
+```
+ArrayList a(2,1);
+cout << a; 
+```
+the calling object is `cout` (an ostream) (`cout.operator<<(a)`) not `a`. When it was our object doing the calling then we could just add a member function to take care of it, now we cannot do that. Instead we need to create a friend function. 
+
+A friend function is a function that takes in two objects and facilitates the handling of the call involving the two objects. For example, we would create the friend function for the `operator<<` in the following way:
+```
+friend ostream operator<<(ostream, ArrayList);
+```
+This prototype can go into the .h for the ArrayList, but it is not a member function. When we implement it (I am also going to say we want to do that in the .cpp of the ArrayList) we will omit the `ArrayList::` that we have added to the other functions. 
+
+```
+ostream operator<<(ostream os, ArrayList a) {
+  for (int i = 0; i < a.getSize(); i++) {       //must use getSize here because we do not have direct access to size
+    os << a.getData(i) << " ";                  // Use os just like we use cout elsewhere
+  }
+  return os;                                    // return the ostream so that we can cascade calls. 
+}
+```
