@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 bool validateNum(int num) {
     try {
         if (num > 10) {
-            throw num; 
+            throw num;
         }
         return true;
     } catch (int e) {

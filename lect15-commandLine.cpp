@@ -2,6 +2,7 @@
 #include <iostream>
 
 int main(int argc, char **argv) {
+    // Motivation
     // Print out the number of arguments (argc)
 
     // Usage statement
