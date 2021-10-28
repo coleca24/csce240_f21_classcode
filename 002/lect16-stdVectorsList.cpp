@@ -31,100 +31,100 @@ int main(int argc, char **argv) {
     auto it = vect1.begin();
     int index = 1;
     it = vect1.insert(it + index, 200);
-    // for (auto i : vect1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : vect1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     it = vect1.begin();
     it = vect1.insert(it +1, 200);
-    // for (auto i : vect1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : vect1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     // How to remove data from vector (pop_back and erase)
     vect1.pop_back();
-    // for (auto i : vect1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : vect1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
-    it = vect1.begin();
+    it = vect1.end()-1;
     vect1.erase(it);
-    // for (auto i : vect1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : vect1) {
+        cout << i << " ";
+    }
+    cout << "\n";
     // Lists
     // Initialization of list<type>
     list<int> list1{1, 2, 3, 4, 5};
-    // for (auto i : list1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : list1) {
+        cout << i << " ";
+    }
+    cout << "\n";
     // How to insert data into list (push_back, push_front and insert)
     auto it2 = list1.begin();
     list1.insert(it2, 10);
-    // for (auto i : list1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : list1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     list1.push_front(101);
-    // for (auto i : list1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : list1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     list1.push_back(100);
-    // for (auto i : list1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : list1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     // How to remove data from list (pop_back, pop_front and erase)
     it2 = list1.begin();
     list1.erase(it2);
-    // for (auto i : list1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : list1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     list1.pop_back();
-    // for (auto i : list1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : list1) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     list1.pop_front();
-    // for (auto i : list1) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : list1) {
+        cout << i << " ";
+    }
+    cout << "\n";
     // list[0];
     // Question: why do you figure there is no push_front
     // or pop_front for vectors?
 
     // Algorithms: https://www.cplusplus.com/reference/algorithm/
     vector<int> unsorted{11, 2, 0, 4, 8};
-    // for (auto i : unsorted) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : unsorted) {
+        cout << i << " ";
+    }
+    cout << "\n";
 
     // Sort the whole list with default comparison '<'
     std::sort(unsorted.begin(), unsorted.end());
-    // for (auto i : unsorted) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : unsorted) {
+        cout << i << " ";
+    }
+    cout << "\n";
     // Sort the whole list with function for comparison
     std::sort(unsorted.begin(), unsorted.end(), mysortfunction);
-    // for (auto i : unsorted) {
-    //     cout << i << " ";
-    // }
-    // cout << "\n";
+    for (auto i : unsorted) {
+        cout << i << " ";
+    }
+    cout << "\n";
     // What if I wanted to sort part of my array in one way and
     // one part in another way?
     // [11 2 0 4 8] -> [2 11 0 8 4]
