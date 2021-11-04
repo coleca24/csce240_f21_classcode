@@ -227,5 +227,39 @@ int main() {
 Now, I might have been expecting to get the `Child` output since `p` is pointing to a `Child`, but I would not. This issue stems from static definitions of functions by the compiler. Once you tell the compiler that `p` is a Parent, then that will forever be what it thinks `p` is, regardless of what you point it to. We need to fix this if polymorphism is to be useful! We will do that using virtual functions! 
 
 ## Virtual Functions
+Making a function virtual will allow for dynamic linking. For example, in the case of our `Parent` pointer that is pointing to a `Child` we can make the `print` function to be dynamically linked so that when we call the `print` we will get the `Child` `print`. 
+
+All we need to do is make the following update to the `Parent` class:
+```
+class Parent {
+  public: 
+    Parent(){
+      cout << "Parent Default\n";
+      num = 10; 
+    }
+    Parent(int val) {
+      num = val;
+    }
+    virtual void print() {           // Note the virtual keyword
+      cout << "Num: " << num << "\n";
+    }
+  protected: 
+    int num; 
+```
+
+Now when we run this code, we will get the expected output. 
+```
+int main() {
+  Parent *p; 
+  Child c; 
+  p = &c;
+  p->print(); 
+}
+
+// Output: 
+// Num: 30 
+// Another Num: 30 
+```
 
 ## Abstract Classes
+
