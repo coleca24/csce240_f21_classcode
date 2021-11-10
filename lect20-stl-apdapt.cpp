@@ -16,8 +16,16 @@ using std::string;
 using std::cout;
 using std::cin;
 
-int main(int argc, char **argv) {
+vector<int> getMaxNElements(vector<int> v, int n) {
+    vector<int> res;
+    // TODO(in-class): Ideas?
+    return res;
+}
 
+int main(int argc, char **argv) {
+    // Solution to Exercise: Can you update this to return the 2 max values?
+    vector<int> v{2,4,6,10,2,57};
+    vector<int> res = getMaxNElements(v, 2);
     // Adapter #1 - The Stack
     stack<int> s1;
 
