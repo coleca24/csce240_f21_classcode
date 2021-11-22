@@ -261,7 +261,7 @@ int main() {
 // Another Num: 30 
 ```
 
-## Abstract Classes
+## Abstract Classes and Pure Virtual Functions
 Abstract classes are those that we cannot instantiate (ie. we would not be able to make a new Object in the main). We can make a class to be an Abstract class (similar to an interface in Java) by making at least one of its functions to be pure virtual. For example, the `print` function below would be a pure virtual function:
 
 ```
