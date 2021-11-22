@@ -262,4 +262,40 @@ int main() {
 ```
 
 ## Abstract Classes
+Abstract classes are those that we cannot instantiate (ie. we would not be able to make a new Object in the main). We can make a class to be an Abstract class (similar to an interface in Java) by making at least one of its functions to be pure virtual. For example, the `print` function below would be a pure virtual function:
 
+```
+class Parent {
+  public: 
+    Parent(){
+      cout << "Parent Default\n";
+      num = 10; 
+    }
+    Parent(int val) {
+      num = val;
+    }
+    virtual void print() = 0; 
+  protected: 
+    int num; 
+ };
+```
+
+And that would mean that any Child that inherits from it would need to implement that `print()` function (example below)
+```
+class Child : public Parent {
+  public:
+    Child() : Parent(30) {  // Calling the alt. constructor in Parent
+      cout << "Child Default\n"; 
+      anotherNum = 30; 
+    }
+    void print() {
+      cout << "Num: " << num << "\n"; // Now we would have direct access. 
+      cout << "Another Num: " << anotherNum << "\n";
+    }
+  private:
+    int anotherNum; 
+  
+};
+```
+
+If a child class does not implement all of the pure virtual functions then it will also become abstract. 
